@@ -20,7 +20,7 @@
           setInputText(event.target.value);    //gives element 
         }
         function sendMessage(){
-          
+          if (!inputText.trim()) return;
           const newChatMessages=[
              //'...'Spread operator to copy data
             ...chatMessages,
@@ -32,9 +32,9 @@
           ]
           //setChatMessages(newChatMessages);
           const response=Chatbot.getResponse(inputText);
-          setChatMessages([
+          setChatMessages(prevMessages=>[
              //'...'Spread operator to copy data
-            ...chatMessages,
+            ...prevMessages,
             {
               message: inputText,
               sender: 'user',
