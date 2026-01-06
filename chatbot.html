@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chatbot</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/dayjs/dayjs.min.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ChatInput(){
+        return (
+          <>
+            <input 
+              placeholder="Send a message to ChatBot" 
+              size="30"
+            />
+            <button>Send</button>
+          </>
+        );
+      }
+
+      function ChatMessage({message,sender}){
+        /*
+          const message=props.message;
+          const sender=props.sender;
+        */
+        //const {message,sender}=props; even shorter by destructuring in parameter
+
+        /*
+        if (sender==='robot'){
+          return (
+            <div>
+              <img src="Images/robot.png" width="50"/>
+              {message}
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              {message}
+              <img src="Images/user.png" width="50"/>
+            </div>
+          );
+        }
+        */
+
+        return (
+          <div>
+            {sender==='robot' && <img src="Images/robot.png" width="50"/>}
+            {message}
+            {sender==='user' && <img src="Images/user.png" width="50"/>}
+          </div>
+        );
+      }
+
+      function App(){
+        return (
+          <>
+            <ChatInput />
+            <ChatMessage message="Hello Chatbot" sender="user"/>
+            <ChatMessage message="Hello! How can I help you?" sender="robot"/>
+            <ChatMessage message="can you get me todays date?" sender="user"/>
+            <ChatMessage message="Today's January 06" sender="robot"/>
+            <ChatMessage message="How about flip a coin" sender="user"/>
+            <ChatMessage message="Sure! You got tails" sender="robot"/>
+          </>
+        );
+      };
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+<!--
+- Components: Break down the UI into reusable components. Lets us create our own HTML tags.
+- <></> Fragment to reduce unnecessary divs.
+- <input /> self-closing tag when there is no content.
+- Props: Passing data to components using props. Is a object containing attributes.
+-->
