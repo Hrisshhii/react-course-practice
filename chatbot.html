@@ -32,7 +32,7 @@
           ]
           //setChatMessages(newChatMessages);
           const response=Chatbot.getResponse(inputText);
-          setChatMessages(prevMessages=>[ // prevmessage removes outdatedness.
+          setChatMessages(prevMessages=>[ // prevMessage removes outdatedness.
              //'...'Spread operator to copy data
             ...prevMessages,
             {
@@ -50,7 +50,7 @@
           setInputText(''); // to empty after button click ;uses value in input
         }
 
-        function keyDown(event){
+        function keyDown(event){ // for handling the event on keydown
           if(event.key==='Enter'){
             sendMessage();
           }
@@ -65,7 +65,7 @@
               size="30"
               onChange={saveInputText}
               value={inputText} // here we empty the box 
-              onKeyDown={keyDown}
+              onKeyDown={keyDown} //for keydown event
             />
             <button 
             onClick={sendMessage}>
