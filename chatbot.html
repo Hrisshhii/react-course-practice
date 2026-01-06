@@ -59,7 +59,8 @@
       }
 
       function ChatMessages(){
-        const chatMessages=[
+
+        const [chatMessages,setChatMessages]=React.useState([
           {
             message: "Hello Chatbot",
             sender: "user",
@@ -89,10 +90,26 @@
             sender: "robot",
             id: 'id6'
           }
-        ];
+        ]);
+        //const [chatMessages,setChatMessages]=array;
+        //const chatMessages=array[0]; current data
+        //const setChatMessages=array[1]; Function that updates the data
 
+        function sendMessage(){
+          setChatMessages([
+             //'...'Spread operator to copy data
+            ...chatMessages,
+            {
+              message:'test',
+              sender:'user',
+              id: crypto.randomUUID()
+            }
+          ]);
+        }
         return (
           <>
+            <button onClick={sendMessage}>Send Message</button>
+
             {chatMessages.map((chatMessage)=>{
               return (
                 <ChatMessage 
@@ -132,4 +149,6 @@
 - <></> Fragment to reduce unnecessary divs.
 - <input /> self-closing tag when there is no content.
 - Props: Passing data to components using props. Is a object containing attributes.
+- State is a data connected to the HTML, updating data updates HTMl
+- to convert to state use React.useState() has two values current-data and updater-function
 -->
