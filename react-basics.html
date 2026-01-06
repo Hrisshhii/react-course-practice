@@ -1,3 +1,17 @@
+<!--
+React Basics
+- react is a external library for building user interfaces
+- react.js for common functionalities
+- ReactDOM for websites
+- ReactNative for mobile apps
+- babel.js for converting modern javascript to older versions for compatibility 
+- we use JSX (JavaScript XML) syntax to write HTML inside javascript
+- we use ReactDOM.createRoot to create a root element and render content inside it
+
+
+-->
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,10 +23,24 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
+    <script src="https://unpkg.com/dayjs/dayjs.min.js"></script>
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      const button=<button>Hello React</button>;
+      const paragraph=<p>This is a paragraph in React {button}</p>;
+      const date=dayjs().format('HH:mm:ss');
+
+      const div=(
+        <div>
+          {button}
+          {paragraph}
+          <p>Current Time: {date}</p>
+        </div>
+      );
+
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render('Course started!');
+      const root = ReactDOM.createRoot(container);
+      root.render(div);
     </script>
   </body>
 </html>
