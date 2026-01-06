@@ -32,7 +32,7 @@
           ]
           //setChatMessages(newChatMessages);
           const response=Chatbot.getResponse(inputText);
-          setChatMessages(prevMessages=>[
+          setChatMessages(prevMessages=>[ // prevmessage removes outdatedness.
              //'...'Spread operator to copy data
             ...prevMessages,
             {
