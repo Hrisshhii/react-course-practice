@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Chatbot</title>
+    <link rel="stylesheet" href="Chatbot.css"></link>
   </head>
   <body>
     <div class="js-container"></div>
@@ -19,34 +20,33 @@
         function saveInputText(event){
           setInputText(event.target.value);    //gives element 
         }
-        function sendMessage(){
+        async function sendMessage(){
           if (!inputText.trim()) return;
-          const newChatMessages=[
-             //'...'Spread operator to copy data
-            ...chatMessages,
-            {
-              message:inputText,
-              sender:'user',
-              id: crypto.randomUUID()
-            }
-          ]
-          //setChatMessages(newChatMessages);
-          const response=Chatbot.getResponse(inputText);
-          setChatMessages(prevMessages=>[ // prevMessage removes outdatedness.
-             //'...'Spread operator to copy data
-            ...prevMessages,
-            {
-              message: inputText,
-              sender: 'user',
-              id: crypto.randomUUID()
-            },
-            {
-              message:response,
-              sender:'robot',
-              id: crypto.randomUUID()
-            }
-          ]);
+          const userMessage = {
+            message: inputText,
+            sender: 'user',
+            id: crypto.randomUUID()
+          };
 
+          const loadingMessage = {
+            message: <><img src="Images/loading-spinner.gif" className="loading-image"/></>,
+            sender: 'robot',
+            id: crypto.randomUUID()
+          };
+          setChatMessages(prev=>[
+            ...prev,
+            userMessage,
+            loadingMessage
+          ])
+          setInputText('');
+          //setChatMessages(newChatMessages);
+          const response=await Chatbot.getResponseAsync(inputText);
+          
+          setChatMessages(prev=>
+            prev.map(msg=>
+              msg.id===loadingMessage.id ? {...msg,message:response}:msg
+            )
+          );
           setInputText(''); // to empty after button click ;uses value in input
         }
 
@@ -59,19 +59,22 @@
           }
         }
         return (
-          <>
+          <div className="chat-input-container">
             <input 
               placeholder="Send a message to ChatBot" 
               size="30"
               onChange={saveInputText}
               value={inputText} // here we empty the box 
               onKeyDown={keyDown} //for keydown event
+              className="chat-input"
             />
             <button 
-            onClick={sendMessage}>
+            onClick={sendMessage}
+            className="send-button"
+            >
               Send
             </button>
-          </>
+          </div>
         );
       }
 
@@ -101,17 +104,26 @@
         */
 
         return (
-          <div>
-            {sender==='robot' && <img src="Images/robot.png" width="50"/>}
-            {message}
-            {sender==='user' && <img src="Images/user.png" width="50"/>}
+          <div className={sender==='user'? 'chat-message-user':'chat-message-robot'}>
+            {sender==='robot' && <img src="Images/robot.png" className="chat-message-profile"/>}
+            <div className="chat-message-text">
+              {message}
+            </div>
+            {sender==='user' && <img src="Images/user.png" className="chat-message-profile"/>}
           </div>
         );
       }
 
       function ChatMessages({chatMessages}){
+        const chatMessagesRef=React.useRef(null);
+        React.useEffect(()=>{
+          const containerElem=chatMessagesRef.current;
+          if(containerElem){
+            containerElem.scrollTop=containerElem.scrollHeight;
+          }
+        },[chatMessages]);
         return (
-          <>
+          <div className="chat-messages-container" ref={chatMessagesRef}>
             {chatMessages.map((chatMessage)=>{
               return (
                 <ChatMessage 
@@ -121,56 +133,28 @@
                 />
               );
             })}
-          </>
+          </div>
         );
       }
 
       function App(){
         const [chatMessages,setChatMessages]=React.useState([
-          {
-            message: "Hello Chatbot",
-            sender: "user",
-            id: 'id1'
-          },
-          {
-            message: "Hello! How can I help you?",
-            sender: "robot",
-            id: 'id2'
-          },{
-            message: "can you get me todays date?",
-            sender: "user",
-            id: 'id3'
-          },
-          {
-            message: "Today's January 06",
-            sender: "robot",
-            id: 'id4'
-          },
-          {
-            message: "How about flip a coin",
-            sender: "user",
-            id: 'id5'
-          },
-          {
-            message: "Sure! You got tails",
-            sender: "robot",
-            id: 'id6'
-          }
+          
         ]);
         //const [chatMessages,setChatMessages]=array;
         //const chatMessages=array[0]; current data
         //const setChatMessages=array[1]; Function that updates the data
 
         return (
-          <>
+          <div className="app-container">
+            <ChatMessages 
+              chatMessages={chatMessages}
+            />
             <ChatInput 
               chatMessages={chatMessages}
               setChatMessages={setChatMessages}
             />
-            <ChatMessages 
-              chatMessages={chatMessages}
-            />
-          </>
+          </div>
         );
       };
 
@@ -193,4 +177,7 @@
 - Props: Passing data to components using props. Is a object containing attributes.
 - State is a data connected to the HTML, updating data updates HTMl
 - to convert to state use React.useState() has two values current-data and updater-function
+
+- useEffect hook run after component is created or updated
+- useRef hook saves an HTML element from the component
 -->
