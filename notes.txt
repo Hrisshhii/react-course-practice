@@ -1,7 +1,52 @@
-<script src="https://unpkg.com/supersimpledev/react.js"></script>
-<script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-<script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+Node-module: has all npm packages
 
-<script src="https://unpkg.com/dayjs/dayjs.min.js"></script>
-<script src="https://unpkg.com/supersimpledev/babel.js"></script>
-<script type="text/babel">
+src: code
+assests: images
+public: contains files that should be available to public
+
+gitignore: 
+
+eslint.config.js: highlightes problems in js
+
+index.html: main file
+
+package-lock.json: saves version numbers for packages
+
+packages.json: list of packages used
+
+vite.config.js: 
+- vite is a tool we use to set up project
+- vite creates a server
+
+
+
+
+PS C:\Users\pankaj\Desktop\C++\WEB\React> npx create-vite@6.5.0     
+Need to install the following packages:
+create-vite@6.5.0
+Ok to proceed? (y) y
+
+│
+◇  Project name:
+│  chatbot.project
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  JavaScript
+│
+◇  Scaffolding project in C:\Users\pankaj\Desktop\C++\WEB\React\chatbot.project...
+│
+└  Done. Now run:
+
+  cd chatbot.project
+  npm install
+  npm run dev
+
+PS C:\Users\pankaj\Desktop\C++\WEB\React> cd chatbot.project
+PS C:\Users\pankaj\Desktop\C++\WEB\React> cd chatbot.project
+PS C:\Users\pankaj\Desktop\C++\WEB\React\chatbot.project> npm install       
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
