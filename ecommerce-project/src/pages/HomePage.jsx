@@ -3,13 +3,13 @@ import {useEffect,useState} from 'react';
 import { Header } from '../components/Header';
 import './HomePage.css';
 
-export function HomePage() {
+export function HomePage({cart}) {
   const [products,setProducts]=useState([]);
-  const [cart,setCart]=useState([]);
+  
   // has two values name of data and updater function
   useEffect(()=>{
     axios.get('/api/products').then((response)=>{setProducts(response.data);});
-    axios.get('/api/cart-items').then((response)=>{setCart(response.data);});
+    
   },[]);
   // [] is a dependency arry and lets us control when useEffect runs 
   // - [] empty means only once
