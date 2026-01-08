@@ -1,11 +1,16 @@
 import axios from 'axios';
+import {useEffect,useState} from 'react';
 import { Header } from '../components/Header';
-import {products} from '../Data/products.js';
 import './HomePage.css';
 
 export function HomePage() {
-  axios.get('http://localhost:3000/api/products').then((response)=>{console.log(response.data);});
-  
+  const [products,setProducts]=useState([]);
+  // has two values name of data and updater function
+  useEffect(()=>{
+    axios.get('http://localhost:3000/api/products').then((response)=>{setProducts(response.data);});
+  },[]);
+  // [] is a dependency arry and lets us control when useEffect runs 
+  // - [] empty means only once
   return (
     <>
       <title>Ecommerce Project</title>
