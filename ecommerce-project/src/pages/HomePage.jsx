@@ -8,8 +8,8 @@ export function HomePage() {
   const [cart,setCart]=useState([]);
   // has two values name of data and updater function
   useEffect(()=>{
-    axios.get('http://localhost:3000/api/products').then((response)=>{setProducts(response.data);});
-    axios.get('http://localhost:3000/api/cart-items').then((response)=>{setCart(response.data);});
+    axios.get('/api/products').then((response)=>{setProducts(response.data);});
+    axios.get('/api/cart-items').then((response)=>{setCart(response.data);});
   },[]);
   // [] is a dependency arry and lets us control when useEffect runs 
   // - [] empty means only once
