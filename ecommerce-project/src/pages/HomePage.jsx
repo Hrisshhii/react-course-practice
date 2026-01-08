@@ -5,9 +5,11 @@ import './HomePage.css';
 
 export function HomePage() {
   const [products,setProducts]=useState([]);
+  const [cart,setCart]=useState([]);
   // has two values name of data and updater function
   useEffect(()=>{
     axios.get('http://localhost:3000/api/products').then((response)=>{setProducts(response.data);});
+    axios.get('http://localhost:3000/api/cart-items').then((response)=>{setCart(response.data);});
   },[]);
   // [] is a dependency arry and lets us control when useEffect runs 
   // - [] empty means only once
@@ -15,7 +17,7 @@ export function HomePage() {
     <>
       <title>Ecommerce Project</title>
 
-      <Header />
+      <Header cart={cart}/>
 
       <div className="home-page">
         <div className="products-grid">
