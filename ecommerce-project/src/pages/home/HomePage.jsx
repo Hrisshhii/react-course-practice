@@ -9,8 +9,11 @@ export function HomePage({cart}) {
   
   // has two values name of data and updater function
   useEffect(()=>{
-    axios.get('/api/products').then((response)=>{setProducts(response.data);});
-    
+    const getHomeData=async ()=>{
+      const response=await axios.get('/api/products')
+      setProducts(response.data);
+    };
+    getHomeData();
   },[]);
   // [] is a dependency arry and lets us control when useEffect runs 
   // - [] empty means only once
