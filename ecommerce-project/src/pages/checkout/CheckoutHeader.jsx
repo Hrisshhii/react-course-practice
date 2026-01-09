@@ -1,4 +1,4 @@
-export function CheckoutHeader(){
+export function CheckoutHeader({totalQuantity}){
   return (
     <div className="checkout-header">
       <div className="header-content">
@@ -11,7 +11,7 @@ export function CheckoutHeader(){
 
         <div className="checkout-header-middle-section">
           Checkout (<a className="return-to-home-link"
-            href="/">3 items</a>)
+            href="/">{totalQuantity}</a>)
         </div>
 
         <div className="checkout-header-right-section">
