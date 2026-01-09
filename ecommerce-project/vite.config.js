@@ -13,7 +13,8 @@ export default defineConfig({
         target:'http://localhost:3000'
       }
     }
-  }
+  },
+  base: '/react-course-practice/ecommerce-project/'
   /*
     build:{
       outDir:'../ecommerce-backend/dist'

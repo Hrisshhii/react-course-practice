@@ -32,7 +32,16 @@ I am using this repo to practice core React concepts, write examples, and gradua
 - Build a strong foundation in React
 - Apply JavaScript concepts in real UI logic
 - Prepare for frontend / full-stack internship roles
+---
 
+## 🚀 Live Projects
+
+### 🤖 Chatbot Project
+- 🌐 **Live Demo:** https://hrisshhii.github.io/react-course-practice/chatbot-project/
+- ⚛️ **Frontend:** React + Vite
+- 🧠 **Purpose:** Practice project to understand component structure, state, and UI logic.
+
+> Backend runs locally (not deployed).
 ---
 
 ## 🚧 Status
