@@ -14,4 +14,11 @@ export default defineConfig({
       }
     }
   }
+  /*
+    build:{
+      outDir:'../ecommerce-backend/dist'
+      this adds the js file (dist) of jsx frontend to backend folder 
+      run npm run build for confirming these steps
+    }
+  */
 })
