@@ -50,3 +50,9 @@ PS C:\Users\pankaj\Desktop\C++\WEB\React\chatbot.project> npm install
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
   ➜  press h + enter to show help
+
+npm install --save-dev vitest@3.1.2: for testing library (check version)
+> npx vitest: for starting testing
+npm audit fix: to fix issues installing files
+npm run build: for compressing and converting jsx to js for web-services
+
