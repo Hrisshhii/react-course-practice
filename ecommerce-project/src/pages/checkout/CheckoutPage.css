@@ -209,3 +209,12 @@
   margin-top: 20px;
   margin-bottom: 19px;
 }
+
+.link-secondary{
+  padding-left:3px;
+  color:red;
+  cursor: pointer;
+}
+.link-secondary:hover{
+  color:rgb(248, 80, 80);
+}
