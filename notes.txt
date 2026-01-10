@@ -56,3 +56,7 @@ npm install --save-dev vitest@3.1.2: for testing library (check version)
 npm audit fix: to fix issues installing files
 npm run build: for compressing and converting jsx to js for web-services
 
+TypeScript:
+adds extra features to JavaScript
+allows type defination to elements eg. const msg : string ='Hello';
+Type Inference ts figures out type automatically
